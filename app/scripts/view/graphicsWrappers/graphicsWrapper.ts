@@ -9,15 +9,16 @@ export abstract class GraphicWrapper {
      * @param hitArea - An optional hit area for the graphic. Must be provided for the graphic to be interactive
      */
     constructor(
-      buttonMode = false,
-      hitArea?: PIXI.Rectangle | PIXI.Circle | PIXI.Ellipse | PIXI.Polygon | PIXI.RoundedRectangle | PIXI.HitArea,
+        buttonMode = false,
+        hitArea?: PIXI.Rectangle | PIXI.Circle | PIXI.Ellipse | PIXI.Polygon | PIXI.RoundedRectangle | PIXI.HitArea,
     ) {
-      this.container = new PIXI.Container();
-      this.container.interactive = true;
-      this.container.buttonMode = buttonMode;
-      if (hitArea !== undefined) {
-        this.container.hitArea = hitArea;
-      }
+        this.container = new PIXI.Container();
+        this.container.interactive = true;
+        this.container.buttonMode = buttonMode;
+
+        if (hitArea !== undefined) {
+            this.container.hitArea = hitArea;
+        }
     }
 
     /**
@@ -26,7 +27,7 @@ export abstract class GraphicWrapper {
      * @returns The relative point, in the form of a PIXI Point
      */
     public getDataRelativeLoc(data: PIXI.interaction.InteractionData): PIXI.Point {
-      return data.getLocalPosition(this.container);
+        return data.getLocalPosition(this.container);
     }
 
     /**
@@ -34,7 +35,7 @@ export abstract class GraphicWrapper {
      * @returns The local bounds of this graphic wrapper
      */
     public localBounds(): PIXI.Rectangle {
-      return this.container.getLocalBounds();
+        return this.container.getLocalBounds();
     }
 
     /**
@@ -42,7 +43,7 @@ export abstract class GraphicWrapper {
      * @param visible - Whether or not the graphic will be visible
      */
     public setVisible(visible: boolean): void {
-      this.container.visible = visible;
+        this.container.visible = visible;
     }
 
     /**
@@ -50,7 +51,7 @@ export abstract class GraphicWrapper {
      * @returns The local X position
      */
     public localX(): number {
-      return this.container.position.x;
+        return this.container.position.x;
     }
 
     /**
@@ -58,7 +59,7 @@ export abstract class GraphicWrapper {
      * @returns the local Y position
      */
     public localY(): number {
-      return this.container.position.y;
+        return this.container.position.y;
     }
 
     /**
@@ -67,7 +68,7 @@ export abstract class GraphicWrapper {
      * @param y - The new local Y
      */
     public setLocalPosition(x: number, y: number): void {
-      this.container.position.set(x, y);
+        this.container.position.set(x, y);
     }
 
     /**
@@ -75,7 +76,7 @@ export abstract class GraphicWrapper {
      * @returns The root display object
      */
     public getDisplayObject(): PIXI.Container {
-      return this.container;
+        return this.container;
     }
 
     /**
@@ -83,7 +84,7 @@ export abstract class GraphicWrapper {
      * @param obj - The PIXI container to add this graphic wrapper's root to
      */
     public addTo(obj: PIXI.Container): void {
-      obj.addChild(this.container);
+        obj.addChild(this.container);
     }
 
     /**
@@ -91,7 +92,7 @@ export abstract class GraphicWrapper {
      * @param obj - The PIXI container to remove this graphic wrapper's root from
      */
     public removeFrom(obj: PIXI.Container): void {
-      obj.removeChild(this.container);
+        obj.removeChild(this.container);
     }
 
     /**
@@ -99,7 +100,7 @@ export abstract class GraphicWrapper {
      * @param obj - The PIXI display object or graphic wrapper to add
      */
     public addChild(obj: PIXI.DisplayObject | GraphicWrapper): void {
-      this.container.addChild(obj instanceof GraphicWrapper ? obj.container : obj);
+        this.container.addChild(obj instanceof GraphicWrapper ? obj.container : obj);
     }
 
     /**
@@ -108,7 +109,7 @@ export abstract class GraphicWrapper {
      * @param position - The index to add at
      */
     public addChildAt(obj: PIXI.DisplayObject | GraphicWrapper, position: number): void {
-      this.container.addChildAt(obj instanceof GraphicWrapper ? obj.container : obj, position);
+        this.container.addChildAt(obj instanceof GraphicWrapper ? obj.container : obj, position);
     }
 
     /**
@@ -116,7 +117,7 @@ export abstract class GraphicWrapper {
      * @param obj - The PIXI display object or graphic wrapper to remove
      */
     public removeChild(obj: PIXI.DisplayObject | GraphicWrapper): void {
-      this.container.removeChild(obj instanceof GraphicWrapper ? obj.container : obj);
+        this.container.removeChild(obj instanceof GraphicWrapper ? obj.container : obj);
     }
 
     /**
@@ -124,8 +125,8 @@ export abstract class GraphicWrapper {
      * @param hitArea - The new hit area
      */
     protected updateHitArea(
-      hitArea: PIXI.Rectangle | PIXI.Circle | PIXI.Ellipse | PIXI.Polygon | PIXI.RoundedRectangle | PIXI.HitArea,
+    hitArea: PIXI.Rectangle | PIXI.Circle | PIXI.Ellipse | PIXI.Polygon | PIXI.RoundedRectangle | PIXI.HitArea,
     ): void {
-      this.container.hitArea = hitArea;
+        this.container.hitArea = hitArea;
     }
-  }
+}

@@ -24,6 +24,8 @@ export class GraphManager {
       this.div.style.height = `${h}px`;
     }
 
+    // this looks redundant, but may add parallel managers to stage manager later.
+
     public deleteSpring(springId: string): void {
         this.stageManager.removeSpring(springId);
     }
