@@ -1,4 +1,3 @@
-import { SpringDescription } from "../../worldDescription";
 
 /** Class for wrapping a PIXI object */
 export abstract class GraphicWrapper {

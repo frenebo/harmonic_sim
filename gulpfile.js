@@ -9,6 +9,13 @@ gulp.task("clean", () => del(["build"]));
 
 gulp.task("copy", () => gulp.src(["app/**/*", "!app/**/*.ts"]).pipe(gulp.dest("build")));
 
+
+gulp.task("copy_pixi", () => {
+  return gulp.src(["node_modules/pixi.js/dist/pixi.js"]).pipe(
+    gulp.dest("build/deps/pixi"),
+  );
+});
+
 gulp.task("start_server", () => {
   return connect.server({
     root: "build",
@@ -29,6 +36,7 @@ gulp.task("serve", gulp.series(
   "clean",
   "ts",
   "copy",
+  "copy_pixi",
   "start_server",
 ));
 

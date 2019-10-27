@@ -1,9 +1,9 @@
-import { WorldDescription, MassDescription } from "../worldDescription";
-import { GraphManager } from "./graphManager";
+import { WorldDescription, MassDescription } from "../worldDescription.js";
+import { GraphManager } from "./graphManager.js";
 
 
 export class ViewManager {
-    private readonly stageManager: GraphManager;
+    private readonly graphManager: GraphManager;
     private worldDescription: WorldDescription;
 
     constructor(div: HTMLDivElement) {
@@ -12,7 +12,19 @@ export class ViewManager {
             springs: {},
         };
 
-        this.stageManager = new GraphManager(div);
+        this.graphManager = new GraphManager(div);
+
+        document.body.style.margin = "0px";
+
+        const onResize = () => {
+            if (document.documentElement === null) {
+                return;
+            }
+            this.graphManager.setDimensions(window.innerWidth, window.innerHeight);
+        };
+        window.addEventListener("resize", onResize);
+
+        onResize();
     }
 
     private static massDescriptionsIdentical(before: MassDescription, after: MassDescription): boolean {
@@ -78,27 +90,27 @@ export class ViewManager {
 
         // delete removed springs
         for (const springId in removedSpringIds) {
-            this.stageManager.deleteSpring(springId);
+            this.graphManager.deleteSpring(springId);
         }
         // add new masses
         for (const massId in addedMassIds) {
-            this.stageManager.addMass(massId, newWorldDesc.masses[massId]);
+            this.graphManager.addMass(massId, newWorldDesc.masses[massId]);
         }
         // change modified masses
         for (const massId in changedMassIds) {
-            this.stageManager.updateMass(massId, newWorldDesc.masses[massId]);
+            this.graphManager.updateMass(massId, newWorldDesc.masses[massId]);
         }
         // change modified springs
         for (const springId in changedSpringIds) {
-            this.stageManager.updateSpring(springId, newWorldDesc.springs[springId]);
+            this.graphManager.updateSpring(springId, newWorldDesc.springs[springId]);
         }
         // add new springs
         for (const springId in addedSpringIds) {
-            this.stageManager.addSpring(springId, newWorldDesc.springs[springId]);
+            this.graphManager.addSpring(springId, newWorldDesc.springs[springId]);
         }
         // delete removed masses
         for (const massId in removedMassIds) {
-            this.stageManager.deleteMass(massId);
+            this.graphManager.deleteMass(massId);
         }
     }
 }
