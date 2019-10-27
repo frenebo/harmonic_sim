@@ -1,4 +1,6 @@
+import { ViewManager } from "./view/viewManager";
 
 export function showText(div: HTMLDivElement): void {
-  div.textContent = "Example Text";
+  new ViewManager(div);
+  // div.textContent = "Example Text";
 }

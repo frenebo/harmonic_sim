@@ -18,6 +18,7 @@
     "typescript": "^3.6.4"
   },
   "dependencies": {
+    "@types/pixi.js": "^4.8.9",
     "js-yaml": "^3.13.1"
   }
 }
