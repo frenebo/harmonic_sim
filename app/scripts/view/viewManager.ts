@@ -47,12 +47,12 @@ export class ViewManager {
          * alternative:
          * allIds = new set ( before, after )
          * for id in set:
-         *    if id is in both:
-         *      shared.add(id)
-         *    else if id in before:
-         *       removed.add(id)
-         *    else:
-         *       added.add(id)
+         *     if id is in both:
+         *         shared.add(id)
+         *     else if id is in before:
+         *         removed.add(id)
+         *     else:
+         *         added.add(id)
          */
 
         const changedMassIds: string[] = [];

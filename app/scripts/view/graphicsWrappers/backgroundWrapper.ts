@@ -11,7 +11,7 @@ export class BackgroundWrapper {
   constructor(
     renderer: PIXI.WebGLRenderer | PIXI.CanvasRenderer,
   ) {
-    const texture = PIXI.Texture.fromImage(BACKGROUND_TILE_PATH);
+    const texture = PIXI.Texture.from(BACKGROUND_TILE_PATH);
     this.tilingBackground = new PIXI.extras.TilingSprite(texture, renderer.width, renderer.height);
     this.tilingBackground.interactive = true;
   }
