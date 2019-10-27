@@ -3,12 +3,6 @@
     "target": "es6",
     "charset": "utf8",
     "strict": true,
-    "typeRoots" : ["./node_modules/@types"],
-		"plugins": [
-			{
-				"transform": "@zoltu/typescript-transformer-append-js-extension/output/index.js",
-				"after": true,
-			}
-		]
+    "typeRoots" : ["./node_modules/@types"]
   }
 }
