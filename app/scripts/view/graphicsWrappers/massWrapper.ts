@@ -10,10 +10,6 @@ export class MassWrapper extends GraphicWrapper {
     private static cachedTexture: PIXI.RenderTexture | null = null;
 
     private static drawSprite(renderer: PIXI.CanvasRenderer | PIXI.WebGLRenderer): PIXI.Sprite {
-        if (this.cachedTexture !== null) {
-            return new PIXI.Sprite(this.cachedTexture);
-        }
-
         const graphics = new PIXI.Graphics();
 
         graphics.beginFill(MassWrapper.massFillColor);
@@ -32,9 +28,9 @@ export class MassWrapper extends GraphicWrapper {
         );
         graphics.endFill();
 
-        MassWrapper.cachedTexture = renderer.generateTexture(graphics);
+        const texture = renderer.generateTexture(graphics);
 
-        return MassWrapper.drawSprite(renderer);
+        return new PIXI.Sprite(texture);
     }
 
     private readonly sprite: PIXI.Sprite;
